@@ -2,7 +2,7 @@
     {
         "icon": "grid-outline",
         "name": "menú",
-        "redirectTo": "/login"
+        "redirectTo": "/home"
     },
     {
         "icon": "pricetags-outline",
@@ -12,7 +12,7 @@
     {
         "icon": "notifications-outline",
         "name": "notificaciones",
-        "redirectTo": "/notificaciones"
+        "redirectTo": "/login"
     },
     {
         "icon": "person-outline",

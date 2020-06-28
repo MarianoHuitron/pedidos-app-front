@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,11 +18,20 @@ export class RegisterPage implements OnInit {
     // password2: new FormControl(null, [Validators.required, Validators.minLength(8)])
   });
 
-  constructor(private userService: UserService, public alertController: AlertController, private router: Router) { 
+  constructor(
+    private userService: UserService, 
+    public alertController: AlertController, 
+    private router: Router,
+    public menuCtrl: MenuController
+  ) { 
 
   }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false)
   }
 
   register() {
@@ -39,7 +48,7 @@ export class RegisterPage implements OnInit {
         this.user.reset();
         this.router.navigate(['/login']);
       }, err => {
-        console.log(err)
+       
         const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;
         this.Alert(mensaje.properties.message)
       });

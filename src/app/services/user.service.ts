@@ -15,4 +15,8 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/create`, data);
   }
 
+  login(data) {
+    return this.http.post(`${this.apiUrl}/login`, data);
+  }
+
 }
