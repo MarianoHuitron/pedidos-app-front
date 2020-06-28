@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { AlertController, NavController, MenuController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
     private router: Router, 
     public alertController: AlertController,
     private navCtrl: NavController,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    private authService: AuthService
   ) { 
 
     this.form = new FormGroup({
@@ -31,7 +33,9 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    
+    if(this.authService.isLogged()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   ionViewWillEnter() {
@@ -42,15 +46,10 @@ export class LoginPage implements OnInit {
     
     this.userService.login(this.form.value)
       .subscribe((res:any) => {
-        if(localStorage.getItem('token')) {
-          localStorage.removeItem('token');
-        }
-        localStorage.setItem('token', res.token);
+       
         this.form.reset();
-        // this.router.navigate(['/home'])
+        this.authService.login(res.token);
         this.navCtrl.navigateRoot(['home']);
-
-        // document.getElementById('auth').classList.add('hide');
 
       }, err => {     
         const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;
