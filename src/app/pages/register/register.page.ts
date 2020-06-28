@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,20 +11,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-  user = {
-    name: '',
-    email: '',
-    password: '',
-    password2: ''
-  };
+  user: FormGroup = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+    // password2: new FormControl(null, [Validators.required, Validators.minLength(8)])
+  });
 
-  constructor() { }
+  constructor(private userService: UserService, public alertController: AlertController, private router: Router) { 
+
+  }
 
   ngOnInit() {
   }
 
   register() {
-    console.log('registro')
+
+    const dataUser = {
+      name: this.user.value.name,
+      email: this.user.value.email,
+      password: this.user.value.password,
+      rol: 'customer'
+    }
+    
+    this.userService.register(dataUser)
+      .subscribe(res => {
+        this.user.reset();
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err)
+        const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;
+        this.Alert(mensaje.properties.message)
+      });
   }
+
+
+  async Alert(message) {
+    const alert = await this.alertController.create({
+      header: 'Ups! :(',
+      message: message,
+      buttons: ['OK'],
+      mode: 'ios'
+    });
+
+    await alert.present();
+  }
+
+  
 
 }

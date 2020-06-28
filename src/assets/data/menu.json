@@ -1,0 +1,27 @@
+[
+    {
+        "icon": "grid-outline",
+        "name": "menú",
+        "redirectTo": "/login"
+    },
+    {
+        "icon": "pricetags-outline",
+        "name": "mis pedidos",
+        "redirectTo": "/register"
+    },
+    {
+        "icon": "notifications-outline",
+        "name": "notificaciones",
+        "redirectTo": "/notificaciones"
+    },
+    {
+        "icon": "person-outline",
+        "name": "Mi cuenta",
+        "redirectTo": "/account"
+    },
+    {
+        "icon": "help-outline",
+        "name": "Ayuda",
+        "redirectTo": "/help"
+    }
+]
