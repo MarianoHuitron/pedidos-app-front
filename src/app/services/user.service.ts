@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = 'http://localhost:3000/user';
+  apiUrl = 'https://server-app-pedidos.herokuapp.com/user';
   logged = false;
 
   register(data) {

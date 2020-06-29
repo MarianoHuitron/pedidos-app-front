@@ -7,7 +7,7 @@
     {
         "icon": "pricetags-outline",
         "name": "mis pedidos",
-        "redirectTo": "/register"
+        "redirectTo": "/pedidos"
     },
     {
         "icon": "notifications-outline",

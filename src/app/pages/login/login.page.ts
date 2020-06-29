@@ -33,13 +33,14 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLogged()) {
-      this.router.navigate(['/home']);
-    }
+    
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false)
+    if(this.authService.isLogged()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   login() {

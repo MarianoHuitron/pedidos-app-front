@@ -1,0 +1,131 @@
+<app-header title="Cantidad" back="/home"></app-header>
+
+
+<ion-content color="light-gray" class="ion-padding">
+
+  <div class="flex">
+    <ion-text color="medium" >
+      <p style="padding: 1rem; text-align: center;">La cantidad se aplicará a <br>su próxima selección</p>
+    </ion-text>
+  </div>
+
+  <div style="height: 20vh; display: flex; flex-direction: column; justify-content: center;" >
+    <ion-row >
+      <ion-col>
+        <ion-button (click)="remove()" expand="full" size="large" fill="clear" >
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col >
+        <ion-text color="success" class="ion-text-center">
+          <h4>{{cantidad}}</h4>
+        </ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add()" expand="full" size="large" fill="clear">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-item-divider>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col >
+          <ion-button (click)="setNum(1)" expand="block" fill="clear"  color="dark">
+            <h4>1</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(2)"  expand="block" fill="clear"  color="dark">
+            <h4>2</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(3)"  expand="block" fill="clear" color="dark">
+            <h4>3</h4>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-item-divider>
+  <ion-item-divider>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col >
+          <ion-button (click)="setNum(4)"  expand="block" fill="clear"  color="dark">
+            <h4>4</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(5)"  expand="block" fill="clear"  color="dark">
+            <h4>5</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(6)"  expand="block" fill="clear" color="dark">
+            <h4>6</h4>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-item-divider>
+  <ion-item-divider>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col >
+          <ion-button (click)="setNum(7)"  expand="block" fill="clear"  color="dark">
+            <h4>7</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(8)" expand="block" fill="clear"  color="dark">
+            <h4>8</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(9)" expand="block" fill="clear" color="dark">
+            <h4>9</h4>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-item-divider>
+  <ion-item-divider>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col >
+          <ion-button  expand="block" fill="clear"  color="dark">
+            &nbsp;
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="setNum(0)"  expand="block" fill="clear"  color="dark">
+            <h4>0</h4>
+          </ion-button>
+        </ion-col>
+        <ion-col >
+          <ion-button (click)="backSpace()"  expand="block" fill="clear" color="dark">
+            <h4>
+              <ion-icon  name="backspace-outline"></ion-icon>
+            </h4>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-item-divider>
+ 
+
+
+  
+<ion-toolbar>
+  <ion-button expand="full"  color="success" (click)="save()">
+    Aceptar
+  </ion-button>
+</ion-toolbar>
+
+</ion-footer>

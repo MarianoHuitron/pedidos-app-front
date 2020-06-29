@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -22,16 +23,21 @@ export class RegisterPage implements OnInit {
     private userService: UserService, 
     public alertController: AlertController, 
     private router: Router,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    private authService: AuthService
   ) { 
 
   }
 
   ngOnInit() {
+   
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false)
+    if(this.authService.isLogged()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   register() {
