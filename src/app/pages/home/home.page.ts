@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
 
   cantidad: Number = 1;
   Productos: Array<Producto> = [];
+  filterProducts: Array<Producto> = [];
   load;
 
   constructor(
@@ -29,24 +30,32 @@ export class HomePage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.menuCtrl.enable(true)
+    this.menuCtrl.enable(true);
 
-    if(localStorage.getItem('cant')) {
-      this.cantidad = parseInt(localStorage.getItem('cant'));
-    } else {
-      this.cantidad = 1;
-      localStorage.setItem('cant', this.cantidad.toString());
-    }
-
+    this.cantButton();
     this.loading();
+    this.getProducts();
+    
+  }
 
+  getProducts() {
     this.prodService.getProducts()
       .subscribe((res: Producto[]) => {
         this.Productos = res;
+        this.filterProducts = this.Productos;
         this.load.dismiss();
       }, err => {
         console.log(err)
       })
+  }
+
+  cantButton() {
+    if(localStorage.getItem('cant')) {
+      this.cantidad = parseInt(localStorage.getItem('cant'));
+    } else {            
+      this.cantidad = 1;
+      localStorage.setItem('cant', this.cantidad.toString());
+    }
   }
 
   add(producto) {
@@ -73,6 +82,22 @@ export class HomePage implements OnInit {
     await this.load.present();
 
     const { role, data } = await this.load.onDidDismiss();
+  }
+
+
+  changeSearch(event) {
+    this.filterProducts = this.Productos;
+    let busqueda = event.detail.value;
+    busqueda = busqueda.trim();
+    let filtered: Array<Producto> = [];
+
+    for(let i = 0; i < this.filterProducts.length; i++) {
+      if(this.filterProducts[i].name.toLowerCase().includes(busqueda.toLowerCase())) {
+        filtered.push(this.filterProducts[i])
+      }
+    }
+
+    this.filterProducts = filtered;
   }
 
 }

@@ -1,19 +1,19 @@
 <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   
-      <ion-buttons slot="end" >
-        <ion-button fill="outline" mode="ios" routerLink="/teclado">     
-          X   
-          {{cantidad}}      
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="end" >
+      <ion-button fill="outline" mode="ios" routerLink="/teclado">     
+        X   
+        {{cantidad}}      
+      </ion-button>
+    </ion-buttons>
   
-      <ion-title class="ion-text-capitalize">Menú</ion-title>
-    </ion-toolbar>
-  <ion-searchbar mode="ios"></ion-searchbar>
+    <ion-title class="ion-text-capitalize">Menú</ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" (ionChange)="changeSearch($event)"></ion-searchbar>
 
   </ion-header>
 
@@ -22,9 +22,7 @@
 
   <ion-grid >
     <ion-row>
-
-      <ion-col size="4" size-md class="p-1" *ngFor="let p of Productos">
-        
+      <ion-col size="4" size-md class="p-1" *ngFor="let p of filterProducts">
         <ion-card class="card" (click)="add(p._id)" >
           <ion-img [src]="p.img_path"></ion-img>
           <div class="card-content">
@@ -35,7 +33,6 @@
         </ion-card>
       </ion-col>  
     </ion-row>
-
   </ion-grid>
 </ion-content>
 
