@@ -12,4 +12,6 @@ export class DataService {
   getMenu() {
     return this.http.get<Menu[]>('/assets/data/menu.json')
   }
+
+  
 }

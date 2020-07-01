@@ -1,0 +1,18 @@
+.card {
+    border: 1px solid;
+
+}
+.card-content {
+    background: #5a5a5a;
+}
+
+.card-content > ion-text {
+    margin-left: 2px;
+    margin-right: 2px;
+    color: white;
+    font-size: 10px;
+}
+
+.p-1 {
+    padding: 1px;
+}

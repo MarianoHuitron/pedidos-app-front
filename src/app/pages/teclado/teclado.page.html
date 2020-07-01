@@ -123,7 +123,7 @@
 
   
 <ion-toolbar>
-  <ion-button expand="full"  color="success" (click)="save()">
+  <ion-button expand="full"  color="success" (click)="save()" [disabled]="cantidad < 1">
     Aceptar
   </ion-button>
 </ion-toolbar>

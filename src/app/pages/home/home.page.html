@@ -13,9 +13,39 @@
   
       <ion-title class="ion-text-capitalize">Menú</ion-title>
     </ion-toolbar>
+  <ion-searchbar mode="ios"></ion-searchbar>
+
   </ion-header>
-<ion-content>
-    <ion-button (click)="add()" expand="block" fill="clear" shape="round">
-        Click me
-    </ion-button>
+
+<ion-content >
+
+
+  <ion-grid >
+    <ion-row>
+
+      <ion-col size="4" size-md class="p-1" *ngFor="let p of Productos">
+        
+        <ion-card class="card" (click)="add(p._id)" >
+          <ion-img [src]="p.img_path"></ion-img>
+          <div class="card-content">
+            <ion-text>{{p.name}}</ion-text>
+            <br>
+          <ion-text>${{p.price}}</ion-text>
+          </div>
+        </ion-card>
+      </ion-col>  
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
+
+
+<ion-footer >
+  
+  <ion-button expand="full"   color="success" id="next">
+    <ion-text slot="start">
+      10 piezas = $40.00
+    </ion-text>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+</ion-footer>

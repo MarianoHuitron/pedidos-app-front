@@ -46,16 +46,18 @@ export class TecladoPage implements OnInit {
   }
 
   backSpace() {
-    if(this.changeKey) {
+   
       
-      const characters = this.cantidad.toString();
+    const characters = this.cantidad.toString();
 
-      if(characters.length > 1) {
-        const newCant = characters.substring(0, characters.length - 1);
-        this.cantidad = parseInt(newCant);
-      }
-
+    if(characters.length > 1) {
+      const newCant = characters.substring(0, characters.length - 1);
+      this.cantidad = parseInt(newCant);
+    } else {
+      this.cantidad = 0;
     }
+
+    
   }
 
   save() {
