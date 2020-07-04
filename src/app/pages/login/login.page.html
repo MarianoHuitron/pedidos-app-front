@@ -21,8 +21,9 @@
         </ion-item>
       </ion-list>
       <br>
-      <ion-button type="submit" expand="full" shape="round" [disabled]="!form.valid" color="success">
+      <ion-button type="submit" expand="full" shape="round" [disabled]="!form.valid && !load" color="success">
         Iniciar sesión
+        <ion-spinner *ngIf="load" slot="end" name="crescent"></ion-spinner>
       </ion-button>
     </form>
   </div>

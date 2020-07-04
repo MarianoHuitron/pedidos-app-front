@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-teclado',
@@ -8,15 +9,32 @@ import { Router } from '@angular/router';
 })
 export class TecladoPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _route: ActivatedRoute, public userService: UserService) { }
   cantidad = 1;
   changeKey = false;
+  title = 'Cantidad';
+  description = `La cantidad se aplicará a \n su próxima selección`;
+  update = false;
+  product = '';
   ngOnInit() {
   }
   
   ionViewWillEnter() {
-    this.cantidad = parseInt(localStorage.getItem('cant'));
+
     this.changeKey = false;
+
+    this._route.params.subscribe(params => {
+      if(params.idProd && params.cant) {
+        this.title = `Editar cantidad`;
+        this.description = `Editar la cantidad de piezas`;
+        this.product = params.idProd;
+        this.cantidad = params.cant;
+        this.update = true;
+      } else {      
+        this.cantidad = parseInt(localStorage.getItem('cant'));     
+      }
+    })
+
   }
 
 
@@ -45,9 +63,7 @@ export class TecladoPage implements OnInit {
     }
   }
 
-  backSpace() {
-   
-      
+  backSpace() {     
     const characters = this.cantidad.toString();
 
     if(characters.length > 1) {
@@ -61,11 +77,33 @@ export class TecladoPage implements OnInit {
   }
 
   save() {
-    if(localStorage.getItem('cant')) {
-      localStorage.removeItem('cant');
+
+    
+
+    if(this.update) {
+      
+      const data = {
+        product: this.product,
+        cant: this.cantidad
+      };
+
+      this.userService.updateCantCart(data)
+        .subscribe((res)=> {
+          console.log(res)
+          this.router.navigate(['/carrito'])
+        }, err => console.error(err))
+    } else {
+
+      if(localStorage.getItem('cant')) {
+        localStorage.removeItem('cant');
+      }
+      localStorage.setItem('cant', this.cantidad.toString());
+      this.router.navigate(['/home']);
+
     }
-    localStorage.setItem('cant', this.cantidad.toString());
-    this.router.navigate(['/home']);
+
+
+    
   }
 
 

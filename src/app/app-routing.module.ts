@@ -27,12 +27,20 @@ const routes: Routes = [
   {
     path: 'teclado',
     canActivate: [AuthGuardGuard],
-    loadChildren: () => import('./pages/teclado/teclado.module').then( m => m.TecladoPageModule)
+    children: [
+      {path: '', canActivate: [AuthGuardGuard], loadChildren: () => import('./pages/teclado/teclado.module').then( m => m.TecladoPageModule) },
+      {path: 'edit/:idProd/:cant', canActivate: [AuthGuardGuard], loadChildren: () => import('./pages/teclado/teclado.module').then( m => m.TecladoPageModule),}
+    ]
   },
   {
     path: 'pedidos',
     canActivate: [AuthGuardGuard],
     loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'carrito',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
   }
 ];
 

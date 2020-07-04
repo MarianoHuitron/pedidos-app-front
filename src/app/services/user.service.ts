@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -7,9 +8,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public authService: AuthService) { }
 
   apiUrl = 'https://server-app-pedidos.herokuapp.com/user';
+  // apiUrl = 'http://localhost:3000/user';
   logged = false;
 
   register(data) {
@@ -20,8 +22,31 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/login`, data);
   }
 
-  
+  // Aagregar a carrito
+  addCart(data) {
+    return this.http.put(`${this.apiUrl}/cart-add`, data, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
 
+  getCartProducts() {
+    return this.http.get(`${this.apiUrl}/cart-get`, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
+
+
+  removeCartProduct(id) {
+    return this.http.delete(`${this.apiUrl}/cart-remove/${id}`, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
+
+  updateCantCart(data) {
+    return this.http.put(`${this.apiUrl}/cart-update`, data, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
   
 
 }

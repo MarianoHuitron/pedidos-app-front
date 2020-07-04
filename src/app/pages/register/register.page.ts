@@ -19,6 +19,8 @@ export class RegisterPage implements OnInit {
     // password2: new FormControl(null, [Validators.required, Validators.minLength(8)])
   });
 
+  load: boolean = false;
+
   constructor(
     private userService: UserService, 
     public alertController: AlertController, 
@@ -41,7 +43,7 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-
+    this.load = true;
     const dataUser = {
       name: this.user.value.name,
       email: this.user.value.email,
@@ -52,10 +54,12 @@ export class RegisterPage implements OnInit {
     this.userService.register(dataUser)
       .subscribe(res => {
         this.user.reset();
+        this.load = false;
         this.router.navigate(['/login']);
       }, err => {
        
         const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;
+        this.load = false;
         this.Alert(mensaje.properties.message)
       });
   }

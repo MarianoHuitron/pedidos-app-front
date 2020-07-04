@@ -1,11 +1,11 @@
-<app-header title="Cantidad" back="/home"></app-header>
+<app-header [title]="title" back="/home"></app-header>
 
 
 <ion-content color="light-gray" class="ion-padding">
 
   <div class="flex">
     <ion-text color="medium" >
-      <p style="padding: 1rem; text-align: center;">La cantidad se aplicará a <br>su próxima selección</p>
+      <p style="padding: 1rem; text-align: center;">{{description}}</p>
     </ion-text>
   </div>
 

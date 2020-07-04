@@ -8,9 +8,18 @@
   </ion-header>
   <ion-content>
     <ion-list >
-      <ion-item *ngFor="let c of menuOpt | async" [routerLink]="c.redirectTo">
-        <ion-icon slot="start" [name]="c.icon"></ion-icon>
-        <ion-label class="ion-text-capitalize">{{c.name}}</ion-label>
+      <ion-menu-toggle *ngFor="let c of menuOpt | async">
+        <ion-item  [routerLink]="c.redirectTo">
+          <ion-icon slot="start" [name]="c.icon"></ion-icon>
+          <ion-label class="ion-text-capitalize">{{c.name}}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      
+    </ion-list>
+    <ion-list>
+      <ion-item (click)="logOut()">
+        <ion-icon slot="start" name="exit-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

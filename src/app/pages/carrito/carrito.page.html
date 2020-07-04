@@ -1,0 +1,49 @@
+<app-header title="Carrito de compras" back="/home"></app-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let p of productos">
+
+      <ion-item lines="full" >
+
+        <ion-avatar slot="start"> 
+          <img [src]="p.product.img_path">
+        </ion-avatar>
+        <ion-label>
+          <h3 class="name-prod">{{p.product.name}}</h3>
+          
+          <small color="medium">x{{p.cant}} ${{p.subtotal}}</small>
+        </ion-label>
+        <ion-icon (click)="confirmRemove(p.product._id)" color="medium" slot="end" name="trash-outline"></ion-icon>
+
+      </ion-item>
+
+      <ion-item-options side="start" color="light">
+
+        <ion-item-option [routerLink]="['/teclado/edit', p.product._id, p.cant]" color="light">
+          <ion-button  expand="full" fill="clear" >
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-item-option>
+
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+    <ion-item lines="none">
+      <ion-label slot="start">Total: ${{total}}</ion-label>
+      <!-- <ion-label slot="end">Total: ${{total}}</ion-label> -->
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer >
+  <ion-button expand="full"   color="success" id="next" routerLink="/">
+    Continuar
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+</ion-footer>

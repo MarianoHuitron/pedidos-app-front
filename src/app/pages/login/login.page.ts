@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginPage implements OnInit {
 
   form: FormGroup;
+  load: boolean = false;
 
  
 
@@ -45,15 +46,18 @@ export class LoginPage implements OnInit {
 
   login() {
     
+    this.load = true;
     this.userService.login(this.form.value)
       .subscribe((res:any) => {
        
         this.form.reset();
         this.authService.login(res.token);
+        this.load = false;
         this.navCtrl.navigateRoot(['home']);
 
       }, err => {     
         const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;
+        this.load = false;
         this.Alert(mensaje.properties.message)
       });
 
