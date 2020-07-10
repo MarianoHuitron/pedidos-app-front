@@ -41,6 +41,16 @@ const routes: Routes = [
     path: 'carrito',
     canActivate: [AuthGuardGuard],
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
+  },
+  {
+    path: 'domicilio',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/domicilio/domicilio.module').then( m => m.DomicilioPageModule)
+  },
+  {
+    path: 'domicilio-nuevo',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/domicilio-nuevo/domicilio-nuevo.module').then( m => m.DomicilioNuevoPageModule)
   }
 ];
 

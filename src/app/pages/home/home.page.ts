@@ -29,12 +29,12 @@ export class HomePage implements OnInit {
     public userService: UserService 
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
      
-    this.loading('Por favor espere...');
-    setTimeout(()=> {
-      this.getProducts();
-    },700);
+    await this.loading('Por favor espere...');
+    // setTimeout(()=> {
+    // },200);
+    this.getProducts();
     
   }
 
@@ -108,6 +108,7 @@ export class HomePage implements OnInit {
       message: mensaje,
     });
     await this.load.present();
+    return 'ok';
 
     const { role, data } = await this.load.onDidDismiss();
   }

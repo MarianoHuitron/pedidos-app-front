@@ -1,0 +1,32 @@
+<app-header title="Datos de envío" back="/carrito"></app-header>
+
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <ion-radio-group ngModel="radioOpt">
+          <ion-list-header>
+            <ion-label>Name</ion-label>
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>Biff</ion-label>
+            <ion-radio slot="start" value="biff"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Griff</ion-label>
+            <ion-radio slot="start" value="griff"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Buford</ion-label>
+            <ion-radio slot="start" value="buford"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+    <ion-button class="border" routerLink="/domicilio-nuevo" expand="block" color="success" fill="outline" shape="round">
+        Agregar nueva dirección
+    </ion-button>
+
+</ion-content>

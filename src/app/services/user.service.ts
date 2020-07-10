@@ -10,8 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient, public authService: AuthService) { }
 
-  apiUrl = 'https://server-app-pedidos.herokuapp.com/user';
-  // apiUrl = 'http://localhost:3000/user';
+  // apiUrl = 'https://server-app-pedidos.herokuapp.com/user';
+  apiUrl = 'http://localhost:3000/user';
   logged = false;
 
   register(data) {
@@ -44,6 +44,18 @@ export class UserService {
 
   updateCantCart(data) {
     return this.http.put(`${this.apiUrl}/cart-update`, data, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
+
+  getAddresses() {
+    return this.http.get(`${this.apiUrl}/get-address`, {headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })});
+  }
+
+  createAddress(data) {
+    return this.http.post(`${this.apiUrl}/create-address`, data, {headers: new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     })});
   }

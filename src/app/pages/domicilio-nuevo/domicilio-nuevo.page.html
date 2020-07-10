@@ -1,0 +1,41 @@
+<app-header title="Nueva direccion" back="/domicilio"></app-header>
+<ion-content class="ion-padding">
+
+  <form [formGroup]="domicilio" (ngSubmit)="guardar()">
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" class="label">Calle <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input inputmode="text" formControlName="street"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="label">Número <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input inputmode="text" formControlName="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="label">Colonia <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input inputmode="text" formControlName="sub"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="label">Entre calle 1</ion-label>
+        <ion-input inputmode="text" formControlName="street1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="label">Y calle 2</ion-label>
+        <ion-input inputmode="text" formControlName="street2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" class="label">Informacion adicional</ion-label>
+        <ion-textarea inputmode="text" formControlName="references"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <br><br>
+    <ion-button type="submit" [disabled]="!domicilio.valid" color="success" expand="block">
+      Guardar
+    </ion-button>
+
+  </form>
+
+
+</ion-content>

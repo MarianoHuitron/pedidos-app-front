@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosPage implements OnInit {
 
+  pedidos = [];
   constructor() { }
 
   ngOnInit() {
