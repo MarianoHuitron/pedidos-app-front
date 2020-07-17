@@ -29,4 +29,12 @@ export class DomicilioPage implements OnInit {
       }, err => console.log(err));
   }
 
+
+  next() {
+    console.log(this.radioOpt)
+  }
+
+  changeOpt(event) {
+    this.radioOpt = event.detail;
+  }
 }

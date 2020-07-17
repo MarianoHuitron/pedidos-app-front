@@ -1,32 +1,35 @@
 <app-header title="Datos de envío" back="/carrito"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content >
 
     <ion-list>
-        <ion-radio-group ngModel="radioOpt">
-          <ion-list-header>
-            <ion-label>Name</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Biff</ion-label>
-            <ion-radio slot="start" value="biff"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Griff</ion-label>
-            <ion-radio slot="start" value="griff"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Buford</ion-label>
-            <ion-radio slot="start" value="buford"></ion-radio>
-          </ion-item>
+        <ion-radio-group ngModel="radioOpt" (ionChange)="changeOpt($event)" >
+            
+            <ion-card *ngFor="let d of domicilios">
+                <ion-item>
+                    <ion-radio slot="start" [value]="d._id"></ion-radio>
+                    <ion-label>{{d.street}} {{d.number}}</ion-label>
+                </ion-item>
+            </ion-card>
+
         </ion-radio-group>
-      </ion-list>
+    </ion-list>
 
-    <ion-button class="border" routerLink="/domicilio-nuevo" expand="block" color="success" fill="outline" shape="round">
-        Agregar nueva dirección
-    </ion-button>
-
+    <div class="ion-padding">
+        <ion-button class="border" routerLink="/domicilio-nuevo" expand="block" color="success" fill="outline" shape="round">
+            Agregar nueva dirección
+        </ion-button>
+    </div>
+    
+    
 </ion-content>
+
+
+
+
+<ion-footer >
+    <ion-button expand="full" color="success" [disabled]="!radioOpt" (click)="next()">
+      Continuar
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+</ion-footer>

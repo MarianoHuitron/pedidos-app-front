@@ -10,7 +10,7 @@ export class ProductoService {
   // apiUrl = 'https://server-app-pedidos.herokuapp.com/product';
   apiUrl = 'http://localhost:3000/product';
 
-
+  
   constructor(private http: HttpClient, public authService: AuthService) { }
 
 

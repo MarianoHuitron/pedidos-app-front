@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ItemCart } from '../../interfaces/carrito.interface';
 import { AlertController } from '@ionic/angular';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-carrito',
@@ -10,7 +11,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class CarritoPage implements OnInit {
 
-  constructor(public userService: UserService, public alertCtrl: AlertController) { }
+  constructor(
+    public userService: UserService, 
+    public alertCtrl: AlertController, 
+    public cartService: CartService
+  ) { }
 
   productos: ItemCart[] = [];
   total = 0;
@@ -23,21 +28,17 @@ export class CarritoPage implements OnInit {
   }
 
   getCarrito() {   
-    this.userService.getCartProducts()
-      .subscribe((res: ItemCart[]) => {
-        this.productos = res;
-        this.total = 0;
-        res.map(p => {
-          this.total += p.subtotal;
-        })
-      });
+    const res: ItemCart[] = this.cartService.getInfoCart()
+    this.productos = res;
+    this.total = 0;
+    res.map(p => {
+      this.total += Number(p.subtotal);
+    })
   }
 
   remove(prod) {
-    this.userService.removeCartProduct(prod)
-      .subscribe((res) => {
-        this.getCarrito();
-      }, err => console.error(err))
+    this.cartService.removeItem(prod);
+    this.getCarrito();
   }
 
   cant() {

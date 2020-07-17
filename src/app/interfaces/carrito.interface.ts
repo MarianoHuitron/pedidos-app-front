@@ -1,11 +1,11 @@
 export interface ItemCart {
-    cant: number;
+    cant: Number;
     product: {
         name: string,
-        price: number,
+        price: Number,
         status: boolean,
         _id: string,
         img_path: string
     },
-    subtotal: number;
+    subtotal: Number;
 }

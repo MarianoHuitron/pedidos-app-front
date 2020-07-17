@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-teclado',
@@ -9,7 +10,12 @@ import { UserService } from '../../services/user.service';
 })
 export class TecladoPage implements OnInit {
 
-  constructor(private router: Router, private _route: ActivatedRoute, public userService: UserService) { }
+  constructor(
+    private router: Router, 
+    private _route: ActivatedRoute, 
+    public userService: UserService,
+    public cartService: CartService
+    ) { }
   cantidad = 1;
   changeKey = false;
   title = 'Cantidad';
@@ -78,20 +84,15 @@ export class TecladoPage implements OnInit {
 
   save() {
 
-    
-
     if(this.update) {
-      
       const data = {
         product: this.product,
         cant: this.cantidad
       };
 
-      this.userService.updateCantCart(data)
-        .subscribe((res)=> {
-          console.log(res)
-          this.router.navigate(['/carrito'])
-        }, err => console.error(err))
+      this.cartService.updateCantcart(data);     
+      this.router.navigate(['/carrito']);
+      
     } else {
 
       if(localStorage.getItem('cant')) {

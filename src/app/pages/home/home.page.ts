@@ -4,6 +4,8 @@ import { Producto } from '../../interfaces/producto.interface';
 import { ProductoService } from '../../services/producto.service';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { ItemCart } from '../../interfaces/carrito.interface';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +28,8 @@ export class HomePage implements OnInit {
     public prodService: ProductoService, 
     public auth: AuthService,
     public loadingCtrl: LoadingController,
-    public userService: UserService 
+    public userService: UserService,
+    public cartService: CartService
     ) { }
 
   async ngOnInit() {
@@ -67,37 +70,37 @@ export class HomePage implements OnInit {
 
   getInfoPedido() {
     
-    this.userService.getCartProducts()
-      .subscribe((res: any) => {
-        this.infoPedido.cant = 0;
-        this.infoPedido.total = 0;
-        if(res.length > 0) {
-          res.map(p => {
-            this.infoPedido.cant += p.cant;
-            this.infoPedido.total += p.subtotal;
-          })
-        }
-       
-      }) 
+    const res: any = this.cartService.getInfoCart();
+    
+    this.infoPedido.cant = 0;
+    this.infoPedido.total = 0;
+    if(res.length > 0) {
+      res.map(p => {
+        this.infoPedido.cant += p.cant;
+        this.infoPedido.total += p.subtotal;
+      })
+    }
   }
 
-  add(producto) {
+  add(producto: Producto) {
     
-    const data = {
-      product: producto,
-      cant: this.cantidad
+    const data: ItemCart = {
+      product: {
+        _id: producto._id,
+        name: producto.name,
+        price: Number(producto.price),
+        status: producto.status,
+        img_path: producto.img_path
+      },
+      cant: this.cantidad,
+      subtotal: (this.cantidad * Number(producto.price))
     };
 
-    this.userService.addCart(data)
-      .subscribe(res => {
-        this.cantidad = 1;
-        localStorage.removeItem('cant');
-        localStorage.setItem('cant', this.cantidad.toString());
-        this.getInfoPedido();
-
-      }, err => console.error(err))
-    
-    
+    this.cartService.addCart(data);
+    this.cantidad = 1;
+    localStorage.removeItem('cant');
+    localStorage.setItem('cant', this.cantidad.toString());
+    this.getInfoPedido();
     
   }
 
