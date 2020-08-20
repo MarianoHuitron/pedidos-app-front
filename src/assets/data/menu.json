@@ -1,8 +1,9 @@
 [
+  
     {
         "icon": "grid-outline",
         "name": "menú",
-        "redirectTo": "/home"
+        "redirectTo": "/menu"
     },
     {
         "icon": "pricetags-outline",
@@ -10,18 +11,8 @@
         "redirectTo": "/pedidos"
     },
     {
-        "icon": "notifications-outline",
-        "name": "notificaciones",
-        "redirectTo": "/login"
-    },
-    {
-        "icon": "person-outline",
-        "name": "Mi cuenta",
-        "redirectTo": "/account"
-    },
-    {
         "icon": "help-outline",
-        "name": "Ayuda",
-        "redirectTo": "/help"
+        "name": "Contacto",
+        "redirectTo": "/contacto"
     }
 ]

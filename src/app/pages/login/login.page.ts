@@ -38,9 +38,9 @@ export class LoginPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.menuCtrl.enable(false)
+    // this.menuCtrl.enable(false)
     if(this.authService.isLogged()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/menu']);
     }
   }
 
@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
         this.form.reset();
         this.authService.login(res.token);
         this.load = false;
-        this.navCtrl.navigateRoot(['home']);
+        this.navCtrl.navigateRoot(['menu']);
 
       }, err => {     
         const mensaje = (err.error.errors.email) ? err.error.errors.email: err.error.errors.password;

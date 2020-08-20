@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { ItemCart } from '../../interfaces/carrito.interface';
 import { AlertController } from '@ionic/angular';
 import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -14,7 +15,8 @@ export class CarritoPage implements OnInit {
   constructor(
     public userService: UserService, 
     public alertCtrl: AlertController, 
-    public cartService: CartService
+    public cartService: CartService,
+    private router: Router
   ) { }
 
   productos: ItemCart[] = [];
@@ -70,5 +72,9 @@ export class CarritoPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  navigate(ruta, producto, cant) {
+    this.router.navigate([ruta, producto, cant]);
   }
 }

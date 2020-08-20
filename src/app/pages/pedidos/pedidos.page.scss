@@ -18,3 +18,28 @@ p {
     max-width: 400px;
     margin: 0 auto;
 }
+
+.card {
+    margin: 1rem;
+    box-shadow: 1px 1px 2px 2px rgb(156, 156, 156);
+    border-radius: 5px;
+    padding: .5rem;
+    display: flex;
+    cursor: pointer;
+    
+    .images {
+        max-width: 100px;
+    }
+    .images img{
+        max-width: 100px;
+    }
+
+
+    .info p {
+        text-align: left;
+    }
+
+    .total {
+        margin: 0 auto;
+    }
+}

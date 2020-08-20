@@ -99,7 +99,7 @@ export class TecladoPage implements OnInit {
         localStorage.removeItem('cant');
       }
       localStorage.setItem('cant', this.cantidad.toString());
-      this.router.navigate(['/home']);
+      this.router.navigate(['/menu']);
 
     }
 

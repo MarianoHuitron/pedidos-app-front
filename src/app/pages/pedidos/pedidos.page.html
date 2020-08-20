@@ -1,21 +1,55 @@
-<app-header title="Mis pedidos"></app-header>
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Mis pedidos</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 
 <ion-content >
-    <div class="v-web">
+    <div *ngIf="pedidos.length < 1" class="v-web">
         <img src="assets/img/no-data.png" alt="">
 
 
-    <ion-text>
-        <h2>¡No hay pedidos!</h2>
+        <ion-text>
+            <h2>¡No hay pedidos!</h2>
 
-        <p>Parece que aún no has realizado ninguna compra</p>
-    </ion-text>
+            <p>Parece que aún no has realizado ninguna compra</p>
+        </ion-text>
 
-    <div class="ion-padding">
-        <ion-button color="success" expand="block" routerLink="/home">
-            Comenzar a comprar
-        </ion-button>
+        <div class="ion-padding">
+            <ion-button color="success" expand="block" routerLink="/menu">
+                Comenzar a comprar
+            </ion-button>
+        </div>
     </div>
+
+    
+    <div *ngFor="let p of pedidos">
+        <div class="card" (click)="infoPedido(p)">
+            <div class="images" >
+                <img class="avatar" [src]="p.info_products[0].product.img_path" alt="">
+            </div>
+            <div class="info">
+                <p *ngIf="p.status == 'pending'" style="color: #FFC717">
+                    {{p.status | status}}
+                </p>
+                <p *ngIf="p.status == 'delivery'" style="color: #3DC2FF">
+                    {{p.status | status}}
+                </p>
+                <p *ngIf="p.status == 'success'" style="color: #2DD36F">
+                    {{p.status | status}}
+                </p>
+                <p> {{p.created_at | extractDate}}</p>
+            </div>
+            <div class="total">
+                <p class="">
+                    ${{p.total}}
+                </p>
+            </div>
+        </div>
     </div>
     
 

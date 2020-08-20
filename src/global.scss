@@ -40,3 +40,22 @@ p {
     --border-width: 1px;
 }
 
+ion-icon:hover {
+    cursor: pointer;
+}
+
+ion-menu {
+    --ion-background-color: #636E72;
+    --ion-text-color: var(--ion-color-primary-contrast);
+
+    
+    // ion-toolbar {
+    //     --background: var(--ion-color-primary);
+    //   }
+    
+      ion-list {/* optional, but it needs when you use gradient as a background color.*/
+        background: transparent;
+      }
+    
+
+}

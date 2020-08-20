@@ -17,3 +17,10 @@
     padding: 1px;
 }
 
+@media (min-width: 768px) {
+    .card-content > ion-text {
+        font-size: 1rem;
+    }
+
+}
+

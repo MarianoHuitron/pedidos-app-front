@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PedidosPageRoutingModule } from './pedidos-routing.module';
+import { DetallePageRoutingModule } from './detalle-routing.module';
 
-import { PedidosPage } from './pedidos.page';
+import { DetallePage } from './detalle.page';
 import { ComponentsModule } from '../../components/components.module';
-import { StatusPipe } from '../../pipes/status.pipe';
 import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
@@ -16,10 +15,10 @@ import { PipesModule } from '../../pipes/pipes.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    PedidosPageRoutingModule,
+    DetallePageRoutingModule,
     ComponentsModule,
     PipesModule
   ],
-  declarations: [PedidosPage]
+  declarations: [DetallePage]
 })
-export class PedidosPageModule {}
+export class DetallePageModule {}

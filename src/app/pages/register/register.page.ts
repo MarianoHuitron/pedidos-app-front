@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
   ionViewWillEnter() {
     this.menuCtrl.enable(false)
     if(this.authService.isLogged()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/menu']);
     }
   }
 

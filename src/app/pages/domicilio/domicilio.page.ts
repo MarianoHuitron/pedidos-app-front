@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Domicilio } from 'src/app/interfaces/domicilio.interface';
+import { Router } from '@angular/router';
+import { loadStripe } from '@stripe/stripe-js';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-domicilio',
@@ -11,10 +14,14 @@ export class DomicilioPage implements OnInit {
 
   domicilios: Array<Domicilio> = [];
   radioOpt;
+  stripe;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private router: Router, public pedidoService: PedidoService) { }
 
-  ngOnInit() {
+ async  ngOnInit() {
+
+    this.stripe = await loadStripe('pk_test_51H3X3yIOzkqAV8HlYDhGyt2bW6Zk5WcbOK1AI3hfZBSPz2GhjrLRZV05SnawWRoZV6oEBhU0dB9uuJeATde8aqIr00LUAZ53G3');
+
   }
 
   ionViewWillEnter() {
@@ -31,10 +38,24 @@ export class DomicilioPage implements OnInit {
 
 
   next() {
-    console.log(this.radioOpt)
+    if(this.radioOpt.value) {
+      this.pedidoService.checkOut(JSON.parse(localStorage.getItem('cart')), this.radioOpt.value)
+        .subscribe((res:any) => { 
+          console.log(res)
+          this.stripe.redirectToCheckout({
+            sessionId: res.session_id
+          })
+            .then(function(res) {
+            alert('yes')
+            console.log(res)
+          })
+        }, err => console.error(err))
+    }
   }
 
   changeOpt(event) {
     this.radioOpt = event.detail;
   }
 }
+
+

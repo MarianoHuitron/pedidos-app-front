@@ -11,7 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { LengthPipe } from './pipes/length.pipe';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { StatusPipe } from './pipes/status.pipe';
 
+
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [AppComponent, LengthPipe],
@@ -19,8 +24,10 @@ import { LengthPipe } from './pipes/length.pipe';
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
+    SocketIoModule.forRoot(config),
     AppRoutingModule,
     ComponentsModule,
+    // StatusPipe
   ],
   providers: [
     StatusBar,

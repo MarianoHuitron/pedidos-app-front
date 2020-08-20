@@ -15,7 +15,7 @@ export class LoginAccessGuard implements CanActivate {
     
 
     if(this.authService.isLogged()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/menu']);
       return false;
     } else {
       return true;

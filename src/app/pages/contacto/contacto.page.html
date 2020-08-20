@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Contacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeLg="6" sizeXs="12">
+          <ion-item>
+            <ion-label position="floating" color="medium">Tu nombre</ion-label>
+            <ion-input type="name" color="success" name="name" required formControlName="name"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col sizeLg="6" sizeXs="12">
+          <ion-item>
+            <ion-label position="floating" color="medium">Email</ion-label>
+            <ion-input type="email" color="success" required formControlName="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating" color="medium">Tu mensaje</ion-label>
+            <ion-textarea formControlName="message"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button (click)="enviar()" class="ion-margin"  color="success" [disabled]="!form.valid">
+      Enviar Mensaje
+    </ion-button>
+  </form>
+
+
+  <br>
+  <ion-text color="medium" class="ion-text-center p-2">
+    <h4>Siguenos en nuestras redes</h4>
+  </ion-text>
+
+  <br><br>
+  <div >
+    <ion-grid class="ion-padding" class="ion-margin">
+      <ion-row>
+        <ion-col text-center align="center">
+          <ion-button slot="" expand="" (click)="goTo('https://www.facebook.com/SanJosePan')">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col align="center">
+          <ion-button color="tertiary" (click)="goTo('https://www.instagram.com/sanjose_pan/')">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col align="center">     
+          <ion-button color="secondary" (click)="goTo('https://twitter.com/home')">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    
+  </div>
+
+</ion-content>

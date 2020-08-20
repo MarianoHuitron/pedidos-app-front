@@ -1,0 +1,47 @@
+<app-header title="Detalle de pedido" back="/pedidos"></app-header>
+
+<ion-content >
+  <div class="card info"  *ngIf="contenido">
+    <div class="estatus">
+      <p>
+        <ion-text class="status" [color]="color">
+          <h4>{{pedido.status | status}}</h4>
+          <h5>${{pedido.total}}</h5>
+        </ion-text>
+        <ion-text color="medium">{{pedido.created_at | extractDate}}</ion-text>       
+      </p>
+      <p>
+        <ion-text color="medium" >
+          <h6>Domicilio de entrega:</h6>
+        </ion-text>
+        <ion-text color="medium" *ngFor="let d of pedido.customer.address">
+          <p *ngIf="d._id == pedido.address">
+            {{d.street}} #{{d.number}} {{d.sub}}
+          </p>
+        </ion-text>
+      </p>
+    </div>
+  </div>
+
+  <div class="card" *ngIf="contenido">
+    <ion-text color="medium">
+      <h4>Detalle de compra</h4>
+    </ion-text>
+    
+    <div class="item" *ngFor="let p of pedido.info_products">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="p.product.img_path" ></ion-img>
+        </ion-thumbnail>
+        <ion-label class="pan">
+          <ion-text color="dark">{{p.product.name}}</ion-text>
+          <br>
+          <ion-text color="medium">x{{p.cant}} ${{p.subtotal}}</ion-text>
+        </ion-label>
+      </ion-item>
+     
+     
+    </div>
+  </div>
+
+</ion-content>

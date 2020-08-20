@@ -1,0 +1,84 @@
+.bg {
+    display: flex;
+    height: 50vh;
+    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://res.cloudinary.com/dac5es1tx/image/upload/q_auto:eco/v1589844619/panaderia/jkiy3ktkn9bzxnse1ea9.jpg');
+    background-size: cover;
+    filter: brightness(70%);
+
+    .logo {
+        max-width: 300px;
+        background-color: rgba(0, 0, 0, 0.596);
+        filter: blur(10%);
+
+
+        ion-img {
+            max-width: 300px;
+            z-index: 1;
+        }
+    }
+}
+
+
+ion-text {
+    h1, h2 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+        margin: 3rem 3rem;
+        padding: 0 12rem;
+        font-size: 1.2rem;
+    }
+}
+
+hr {
+    background-color: #CC8C4E;
+    max-width: 50px;
+}
+
+ion-grid {
+    max-width: 1000px;
+
+    ion-row {
+        justify-content: center;
+    }
+
+    ion-col {
+        margin: 1rem;
+    }
+
+    img {
+        border-radius: 5px;
+    }
+}
+
+
+.bg-2 {
+    background-image: url('https://res.cloudinary.com/dac5es1tx/image/upload/q_auto:eco/v1589845186/panaderia/byns53obxujh7ed6oius.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 200px;
+    filter: brightness(50%);
+    opacity: 0.8;
+}
+
+canvas.mapboxgl-canvas {
+    width: 100%;
+}
+
+
+@media (max-width: 768px) {
+    ion-text {
+        p {
+            margin: 3rem;
+            padding: 0;
+        }
+    }
+}

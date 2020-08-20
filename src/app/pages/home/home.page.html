@@ -22,7 +22,7 @@
  
   <ion-grid >
     <ion-row>
-      <ion-col size="4" size-md class="p-1" *ngFor="let p of filterProducts">
+      <ion-col sizeLg="3" sizeMd="3" sizeXs="4" class="p-1" *ngFor="let p of filterProducts">
         <ion-card class="card" (click)="add(p)"  style="max-width: 250px">
           <ion-img [src]="p.img_path"></ion-img>
           <div class="card-content">

@@ -6,7 +6,7 @@ import { LoginAccessGuard } from './guards/login-access.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [LoginAccessGuard]
   },
   {
-    path: 'home',
+    path: 'menu',
     canActivate: [AuthGuardGuard],
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
@@ -35,7 +35,10 @@ const routes: Routes = [
   {
     path: 'pedidos',
     canActivate: [AuthGuardGuard],
-    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+    children: [
+      {path: '', canActivate: [AuthGuardGuard], loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)},
+      {path: 'detalle', canActivate: [AuthGuardGuard], loadChildren: () => import('./pages/detalle/detalle.module').then(m => m.DetallePageModule)}
+    ]
   },
   {
     path: 'carrito',
@@ -51,6 +54,24 @@ const routes: Routes = [
     path: 'domicilio-nuevo',
     canActivate: [AuthGuardGuard],
     loadChildren: () => import('./pages/domicilio-nuevo/domicilio-nuevo.module').then( m => m.DomicilioNuevoPageModule)
+  },
+  {
+    path: 'pago/:session',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
+  },
+  {
+    path: 'contacto',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   }
 ];
 
